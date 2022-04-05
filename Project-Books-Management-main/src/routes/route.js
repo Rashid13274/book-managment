@@ -3,6 +3,7 @@ const router = express.Router()
 const UserController = require('../controllers/userController')
 const BookController = require('../controllers/bookController')
 const ReviewController = require('../controllers/reviewController')
+const awsFile=require('../cloud/aws.s3')
 const MiddleWares = require('../middlewares/auth')
 
 
@@ -17,6 +18,7 @@ router.get('/test-me',  function(req, res){
 
 
 // new user register and user login
+router.post("/write-file-aws", awsFile.coverUpload)
 router.post('/register', UserController.registerUser)
 router.get('/login', UserController.userLogin)
 
